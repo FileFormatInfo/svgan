@@ -1,6 +1,12 @@
 # SVG Analyzer [<img alt="Logo for SVGan" src="cmd/server/static/favicon.svg" height="96" align="right"/>](https://svgan.fileformat.info/)
 
+[![deploy](https://github.com/FileFormatInfo/svgan/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/FileFormatInfo/svgan/actions/workflows/gcr-deploy.yaml)
+
 Analyze an SVG image
+
+## License
+
+[GNU Affero General Public License v3.0](LICENSE.txt)
 
 ## Credits
 
