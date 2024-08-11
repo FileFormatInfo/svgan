@@ -17,3 +17,7 @@ Analyze an SVG image
 [![golang](https://www.vectorlogo.zone/logos/golang/golang-ar21.svg)](https://golang.org/ "Programming language")
 [![NodePing](https://www.vectorlogo.zone/logos/nodeping/nodeping-ar21.svg)](https://nodeping.com?rid=201109281250J5K3P "Uptime monitoring")
 [![Twitter](https://www.vectorlogo.zone/logos/twitter/twitter-ar21.svg)](https://github.com/twitter/twemoji/blob/gh-pages/v/14.0.2/svg/1f955.svg "Logo")
+
+* [JoshVarga/svgparser](https://github.com/JoshVarga/svgparser)
+* [mazznoer/csscolorparser](https://github.com/mazznoer/csscolorparser)
+* [tdewolff/parse/v2/css](https://github.com/tdewolff/parse/v2/css)
