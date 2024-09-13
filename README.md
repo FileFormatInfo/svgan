@@ -2,7 +2,7 @@
 
 [![deploy](https://github.com/FileFormatInfo/svgan/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/FileFormatInfo/svgan/actions/workflows/gcr-deploy.yaml)
 
-Analyze an SVG image
+Analyze an SVG image: currently online at [svgan.fileformat.info](https://svgan.fileformat.info/)
 
 ## License
 

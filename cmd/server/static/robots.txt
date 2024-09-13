@@ -1,5 +1,5 @@
 #
-# robots.txt for svginfo
+# robots.txt for svgan
 #
 
 User-agent: *
