@@ -1,4 +1,4 @@
-# SVG Analyzer [<img alt="Logo for SVGan" src="cmd/server/static/favicon.svg" height="96" align="right"/>](https://svgan.fileformat.info/)
+# SVG Analyzer [<img alt="Logo for SVGan" src="ui/static/favicon.svg" height="96" align="right"/>](https://svgan.fileformat.info/)
 
 [![deploy](https://github.com/FileFormatInfo/svgan/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/FileFormatInfo/svgan/actions/workflows/gcr-deploy.yaml)
 

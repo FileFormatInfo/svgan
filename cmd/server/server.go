@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/FileFormatInfo/svgan/ui"
 )
 
 func main() {
@@ -15,11 +17,11 @@ func main() {
 	var listenAddress = os.Getenv("ADDRESS")
 
 	http.HandleFunc("/status.json", statusHandler)
-	http.HandleFunc("/robots.txt", staticHandler.ServeHTTP)
-	http.HandleFunc("/favicon.ico", staticHandler.ServeHTTP)
-	http.HandleFunc("/favicon.svg", staticHandler.ServeHTTP)
-	http.HandleFunc("/images/", staticHandler.ServeHTTP)
-	http.HandleFunc("GET /{$}", staticHandler.ServeHTTP)
+	http.HandleFunc("/robots.txt", ui.StaticHandler.ServeHTTP)
+	http.HandleFunc("/favicon.ico", ui.StaticHandler.ServeHTTP)
+	http.HandleFunc("/favicon.svg", ui.StaticHandler.ServeHTTP)
+	http.HandleFunc("/images/", ui.StaticHandler.ServeHTTP)
+	http.HandleFunc("GET /{$}", ui.StaticHandler.ServeHTTP)
 	http.HandleFunc("POST /{$}", uploadHandler)
 
 	err := http.ListenAndServe(listenAddress+":"+strconv.Itoa(listenPort), nil)
