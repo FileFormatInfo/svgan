@@ -4,6 +4,18 @@
 <table class="table table-bordered table-striped w-auto">
     <tbody>
         <tr>
+            <td>Source</td>
+            <td>{{toString .source}}</td>
+        </tr>
+        <tr>
+            <td>Size</td>
+            <td>{{.size}}</td>
+        </tr>
+        <tr>
+            <td>Content-Type</td>
+            <td>{{toString .mime}}</td>
+        </tr>
+        <tr>
             <td>width</td>
             <td>{{toString .data.SvgWidth}}</td>
         </tr>

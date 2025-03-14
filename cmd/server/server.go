@@ -26,8 +26,8 @@ func main() {
 	http.HandleFunc("/index.html", func(w http.ResponseWriter, r *http.Request) { ui.RunTemplate(w, r, "index.tmpl", nil) })
 	http.HandleFunc("GET /upload.html", uploadGetHandler)
 	http.HandleFunc("POST /upload.html", uploadPostHandler)
-	http.HandleFunc("GET /url.html", func(w http.ResponseWriter, r *http.Request) { ui.RunTemplate(w, r, "url.tmpl", nil) })
-	http.HandleFunc("POST /url.html", uploadGetHandler)
+	http.HandleFunc("GET /url.html", urlGetHandler)
+	http.HandleFunc("POST /url.html", urlPostHandler)
 	http.HandleFunc("GET /clipboard.html", func(w http.ResponseWriter, r *http.Request) { ui.RunTemplate(w, r, "clipboard.tmpl", nil) })
 	http.HandleFunc("POST /clipboard.html", uploadGetHandler)
 

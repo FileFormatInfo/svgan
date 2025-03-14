@@ -50,10 +50,10 @@ func uploadPostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ui.RunTemplate(w, r, "_results.tmpl", map[string]interface{}{
-		"filename": handler.Filename,
-		"size":     handler.Size,
-		"mime":     handler.Header.Get("Content-Type"),
-		"data":     svgInfo,
-		"Title":    "SVG Analysis Results",
+		"source": handler.Filename,
+		"size":   handler.Size,
+		"mime":   handler.Header.Get("Content-Type"),
+		"data":   svgInfo,
+		"Title":  "SVG Analysis Results",
 	})
 }
