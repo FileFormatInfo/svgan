@@ -1,0 +1,25 @@
+{{template "above" .}}
+
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<a class="nav-link active" href="upload.html">Upload</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="url.html">URL</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="clipboard.html">Clipboard</a>
+	</li>
+</ul>
+
+<form action="/upload.html" class="pt-3" enctype="multipart/form-data" method="post">
+    <div class="mb-3">
+        <label for="file" class="form-label">SVG image file</label>
+        <input class="form-control" type="file" id="file" name="file" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+	<a class="btn btn-outline-primary" href="index.html">Cancel</a>
+</form>
+
+
+{{template "below" .}}

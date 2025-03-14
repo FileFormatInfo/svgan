@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/FileFormatInfo/svgan/internal/common"
 	svgan "github.com/FileFormatInfo/svgan/lib"
 )
 
@@ -37,7 +38,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	svgInfo, svgErr := svgan.SvgCheck(logger, raw)
+	svgInfo, svgErr := svgan.SvgCheck(common.Logger, raw)
 	if svgErr != nil {
 		fmt.Fprintf(w, "ERROR: Parsing the SVG (%v)\n", svgErr)
 		return

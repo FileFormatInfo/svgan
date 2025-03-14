@@ -1,6 +1,6 @@
 module github.com/FileFormatInfo/svgan
 
-go 1.22.1
+go 1.23
 
 require (
 	github.com/JoshVarga/svgparser v0.0.0-20200804023048-5eaba627a7d1 // indirect
