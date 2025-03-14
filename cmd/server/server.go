@@ -28,8 +28,8 @@ func main() {
 	http.HandleFunc("POST /upload.html", uploadPostHandler)
 	http.HandleFunc("GET /url.html", urlGetHandler)
 	http.HandleFunc("POST /url.html", urlPostHandler)
-	http.HandleFunc("GET /clipboard.html", func(w http.ResponseWriter, r *http.Request) { ui.RunTemplate(w, r, "clipboard.tmpl", nil) })
-	http.HandleFunc("POST /clipboard.html", uploadGetHandler)
+	http.HandleFunc("GET /clipboard.html", clipboardGetHandler)
+	http.HandleFunc("POST /clipboard.html", clipboardPostHandler)
 
 	err := http.ListenAndServe(listenAddress+":"+strconv.Itoa(listenPort), nil)
 	if err != nil {
