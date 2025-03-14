@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"strings"
 
+	"encoding/json"
+
 	"github.com/FileFormatInfo/svgan/internal/common"
 )
 
@@ -38,6 +40,20 @@ func initTemplates() map[string]TemplateFunc {
 				result = append(result, i)
 			}
 			return result
+		},
+		"toJson": func(data any) string {
+			jsonStr, jsonErr := json.MarshalIndent(data, "", "    ")
+			if jsonErr != nil {
+				return jsonErr.Error()
+			}
+			return string(jsonStr)
+		},
+		"toString": func(data any) any {
+			if data == nil {
+				return template.HTML("<i>(not set)</i>")
+			}
+
+			return data.(string)
 		},
 	}
 
@@ -111,7 +127,7 @@ type CrumbtrailEntry struct {
 	URL  string
 }
 
-func makeCrumbtrail(r *http.Request) []CrumbtrailEntry {
+func makeCrumbtrail(r *http.Request, data TemplateData) []CrumbtrailEntry {
 	crumbtrail := []CrumbtrailEntry{}
 
 	// Add additional entries based on the request path
@@ -123,6 +139,10 @@ func makeCrumbtrail(r *http.Request) []CrumbtrailEntry {
 			URL:  strings.Join(segments[0:i+1], "/"),
 		}
 		crumbtrail = append(crumbtrail, entry)
+	}
+
+	if data["Title"] != nil {
+		crumbtrail[len(crumbtrail)-1].Text = data["Title"].(string)
 	}
 
 	return crumbtrail
@@ -138,7 +158,7 @@ func RunTemplate(w http.ResponseWriter, r *http.Request, templateName string, da
 	if data == nil {
 		data = make(map[string]any)
 	}
-	data["crumbtrail"] = makeCrumbtrail(r)
+	data["crumbtrail"] = makeCrumbtrail(r, data)
 
 	result, execErr := fn(data)
 	if execErr != nil {

@@ -1,5 +1,33 @@
 {{template "above" .}}
 
-<p>Results go here</p>
+
+<table class="table table-bordered table-striped w-auto">
+    <tbody>
+        <tr>
+            <td>width</td>
+            <td>{{toString .data.SvgWidth}}</td>
+        </tr>
+        <tr>
+            <td>height</td>
+            <td>{{toString .data.SvgHeight}}</td>
+        </tr>
+        <tr>
+            <td>viewbox</td>
+            <td>{{toString .data.ViewBox}}</td>
+        </tr>
+        <tr>
+            <td>colors</td>
+            <td>
+                {{range .data.Colors}}
+                <span style="height: 2em; width: 7em; display: inline-block; background-color: {{.}}; border: 1px solid #a2a2a2; border-radius: 4px; vertical-align: middle; margin-left: 10px;"></span> {{.}}<br>
+                {{end}}
+            </td>
+    </tbody>
+</table>
+
+<details>
+    <summary>Raw details</summary>
+    <pre>{{toJson .data}}</pre>
+</details>
 
 {{template "below" .}}
