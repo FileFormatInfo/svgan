@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -59,5 +60,70 @@ func urlPostHandler(w http.ResponseWriter, r *http.Request) {
 		"mime":   resp.Header.Get("Content-Type"),
 		"data":   svgInfo,
 		"Title":  "URL Analysis Results",
+	})
+}
+
+func urlJsonHandler(w http.ResponseWriter, r *http.Request) {
+	var url string
+
+	if r.Method == http.MethodPost {
+		url = r.FormValue("url")
+	} else {
+		url = r.URL.Query().Get("url")
+	}
+	if url == "" {
+		handleJson(w, r, map[string]interface{}{
+			"success": false,
+			"error":   "url parameter missing",
+		})
+		return
+	}
+
+	resp, err := http.Get(url)
+	if err != nil {
+		handleJson(w, r, map[string]interface{}{
+			"success": false,
+			"error":   err.Error(),
+			"source":  url,
+		})
+		return
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		handleJson(w, r, map[string]interface{}{
+			"success": false,
+			"error":   fmt.Sprintf("failed to fetch URL (http response=%d)", resp.StatusCode),
+			"source":  url,
+		})
+		return
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		handleJson(w, r, map[string]interface{}{
+			"success": false,
+			"error":   err.Error(),
+			"source":  url,
+		})
+		return
+	}
+
+	svgInfo, svgErr := svgan.SvgCheck(common.Logger, body)
+	if svgErr != nil {
+		handleJson(w, r, map[string]interface{}{
+			"success": false,
+			"error":   svgErr.Error(),
+			"source":  url,
+		})
+		return
+	}
+
+	handleJson(w, r, map[string]interface{}{
+		"success": true,
+		"source":  url,
+		"size":    len(body),
+		"mime":    resp.Header.Get("Content-Type"),
+		"data":    svgInfo,
 	})
 }

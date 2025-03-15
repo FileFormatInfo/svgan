@@ -28,6 +28,7 @@ func main() {
 	http.HandleFunc("POST /upload.html", uploadPostHandler)
 	http.HandleFunc("GET /url.html", urlGetHandler)
 	http.HandleFunc("POST /url.html", urlPostHandler)
+	http.HandleFunc("/url.json", urlJsonHandler)
 	http.HandleFunc("GET /clipboard.html", clipboardGetHandler)
 	http.HandleFunc("POST /clipboard.html", clipboardPostHandler)
 

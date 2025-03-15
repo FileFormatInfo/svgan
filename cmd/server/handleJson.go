@@ -9,7 +9,15 @@ import (
 
 func handleJson(w http.ResponseWriter, r *http.Request, data any) {
 
-	b, err := json.Marshal(data)
+	var b []byte
+	var err error
+
+	if r.URL.Query().Get("pretty") != "" {
+		b, err = json.MarshalIndent(data, "", "  ")
+	} else {
+		b, err = json.Marshal(data)
+	}
+
 	if err != nil {
 		common.Logger.Error("json.Marshal failed", "error", err, "data", data)
 		b = []byte("{\"success\":false,\"err\":\"json.Marshal failed\"}")
